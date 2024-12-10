@@ -30,7 +30,7 @@ public class ShopService {
         double totalPrice = orderedProducts.stream().mapToDouble(Product::getPrice).sum();
 
         // Create  order and add it to orderRepo
-        Order order = new Order(orderId, orderedProducts, totalPrice);
+        Order order = new Order(orderId, orderedProducts, totalPrice,OrderStatus.PROCESSING);
         orderRepo.addOrder(order);
 
         // Print message

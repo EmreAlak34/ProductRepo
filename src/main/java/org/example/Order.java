@@ -2,16 +2,21 @@ package org.example;
 
 import java.util.List;
 
+
+
+// Die Order-Klasse
 public class Order {
     private String orderId;
     private List<Product> products;
     private double totalPrice;
+    private OrderStatus orderStatus; // Neues Attribut für den Status
 
     // Constructor
-    public Order(String orderId, List<Product> products, double totalPrice) {
+    public Order(String orderId, List<Product> products, double totalPrice, OrderStatus orderStatus) {
         this.orderId = orderId;
         this.products = products;
         this.totalPrice = totalPrice;
+        this.orderStatus = orderStatus; // Status initialisieren
     }
 
     // Getters
@@ -25,5 +30,14 @@ public class Order {
 
     public double getTotalPrice() {
         return totalPrice;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    // Setter (falls du den Status später ändern möchtest)
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 }
