@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.List;
+import java.util.stream.Collectors; // Import für Collectors
 
 public class ShopService {
     private OrderRepoInterface orderRepo; // To store orders
@@ -12,7 +13,7 @@ public class ShopService {
         this.productRepo = productRepo;
     }
 
-    // Method to place  order
+    // Method to place an order
     public void placeOrder(String orderId, List<String> productIds) {
         // Create a list to store the ordered products
         List<Product> orderedProducts = productIds.stream()
@@ -29,11 +30,18 @@ public class ShopService {
         // Calculate total price
         double totalPrice = orderedProducts.stream().mapToDouble(Product::getPrice).sum();
 
-        // Create  order and add it to orderRepo
-        Order order = new Order(orderId, orderedProducts, totalPrice,OrderStatus.PROCESSING);
+        // Create order and add it to orderRepo with a default status
+        Order order = new Order(orderId, orderedProducts, totalPrice, OrderStatus.PROCESSING);
         orderRepo.addOrder(order);
 
         // Print message
         System.out.println("Order placed successfully!");
+    }
+
+    // Method to get orders by status
+    public List<Order> getOrdersByStatus(OrderStatus status) {
+        return orderRepo.getAllOrders().stream()
+                .filter(order -> order.getOrderStatus() == status) // Use the correct method to get the status
+                .collect(Collectors.toList());
     }
 }

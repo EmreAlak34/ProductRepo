@@ -2,9 +2,6 @@ package org.example;
 
 import java.util.List;
 
-
-
-// Die Order-Klasse
 public class Order {
     private String orderId;
     private List<Product> products;
@@ -33,7 +30,7 @@ public class Order {
     }
 
     public OrderStatus getOrderStatus() {
-        return orderStatus;
+        return orderStatus; // Methode zum Abrufen des Status
     }
 
     // Setter (falls du den Status später ändern möchtest)
